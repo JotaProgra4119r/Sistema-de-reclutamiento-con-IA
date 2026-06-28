@@ -369,15 +369,32 @@ async def exportar_reportes(config: ExportConfig):
     try:
         zip_buffer = io.BytesIO()
         with zipfile.ZipFile(zip_buffer, "w", zipfile.ZIP_DEFLATED) as zip_file:
+            # 1. Exportar el CSV de Freelancers
             if config.freelancers_csv and datos_limpios["freelancers"] is not None:
                 zip_file.writestr("freelancers_segmentados.csv", datos_limpios["freelancers"].to_csv(index=False))
+            
+            # 2. Exportar el CSV de Reseñas
             if config.resenas_csv and datos_limpios["resenas"] is not None:
                 zip_file.writestr("resenas_segmentadas.csv", datos_limpios["resenas"].to_csv(index=False))
+            
+            # 3. Exportar Reporte Gráfico en PDF para Freelancers
             if config.reporte_grafico and datos_limpios["freelancers"] is not None:
-                zip_file.writestr("reporte_freelancers_pca.pdf", generar_reporte_pdf(datos_limpios["freelancers"], "freelancers").getvalue())
+                pdf_f_buffer = generar_reporte_pdf(datos_limpios["freelancers"], "freelancers")
+                # 🌟 EXTRAEMOS LOS BYTES CRUDOS ANTES DE HACER EL WRITE
+                pdf_f_bytes = pdf_f_buffer.getvalue()
+                zip_file.writestr("reporte_freelancers_pca.pdf", pdf_f_bytes)
+                pdf_f_buffer.close()
+            
+            # 4. Exportar Reporte Gráfico en PDF para Reseñas
             if config.reporte_grafico and datos_limpios["resenas"] is not None:
-                zip_file.writestr("reporte_resenas_pca.pdf", generar_reporte_pdf(datos_limpios["resenas"], "reseñas").getvalue())
+                vec_entrenado = modelos_entrenados.get("resenas", {}).get("vectorizer") if "resenas" in modelos_entrenados else None
+                pdf_r_buffer = generar_reporte_pdf(datos_limpios["resenas"], "resenas", vectorizer=vec_entrenado)
+                # 🌟 EXTRAEMOS LOS BYTES CRUDOS ANTES DE HACER EL WRITE
+                pdf_r_bytes = pdf_r_buffer.getvalue()
+                zip_file.writestr("reporte_resenas_pca.pdf", pdf_r_bytes)
+                pdf_r_buffer.close()
                 
+            # 5. Resumen Estadístico
             if config.resumen_estadistico:
                 buffer_txt = io.StringIO()
                 buffer_txt.write("TALENTMOSAIC INDUSTRIAL EXPORT REPORT\n====================================\n")
