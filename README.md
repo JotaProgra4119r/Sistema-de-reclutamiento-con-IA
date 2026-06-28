@@ -1,53 +1,238 @@
-#TalentMosaic — Motor Híbrido de Segmentación de Talento y NLP
+# 🎯 TalentMosaic — Motor Híbrido de Segmentación de Talento y NLP
 
-Este proyecto es una plataforma web full-stack de nivel industrial diseñada para la automatización, preprocesamiento, análisis estadístico avanzado e inferencia predictiva en tiempo real sobre datos de capital humano. El sistema implementa un motor híbrido de Machine Learning capaz de ejecutar segmentación numérica y procesamiento de lenguaje natural (NLP) a través de cuatro modelos de clustering no supervisado.
+Una plataforma web full-stack de nivel industrial diseñada para la automatización, preprocesamiento, análisis estadístico avanzado e inferencia predictiva en tiempo real sobre datos de capital humano.
+
+## ✨ Características Principales
+
+- **Motor Híbrido de ML**: Segmentación numérica + Procesamiento de Lenguaje Natural (NLP)
+- **4 Modelos de Clustering**: Algoritmos no supervisados para análisis avanzado
+- **Procesamiento en Tiempo Real**: Inferencia predictiva de alto rendimiento
+- **Full-Stack Industrial**: Backend robusto + Frontend responsivo
+- **Soporte Masivo de Datos**: Procesamiento de datasets grandes en CSV
+
+---
+
+## 📋 Requisitos del Sistema
+
+Antes de comenzar, asegúrate de tener instalado:
+
+| Componente | Versión Mínima | Notas |
+|-----------|-----------------|-------|
+| **Python** | 3.10+ | Requiere compilador de 64 bits |
+| **Node.js** | 18.0.0+ | Se recomienda versión LTS |
+| **npm** | 8.0.0+ | Gestor de paquetes de Node |
+| **SO** | Windows 10/11, Linux, macOS | Cualquier plataforma moderna |
+| **Terminal** | PowerShell (Win) / Bash | Para ejecutar comandos |
 
 ---
 
-Requisitos del Sistema
+## 🚀 Guía de Instalación
 
-Antes de iniciar la instalación, asegúrese de contar con los siguientes entornos globales configurados en su máquina:
+### Paso 1: Clonar el Repositorio
 
-* **Sistema Operativo:** Windows 10/11 o Linux/macOS.
-* **Python:** v3.10 o superior (Se requiere compilador de 64 bits para el soporte de dependencias matemáticas).
-* **Node.js:** v18.0.0 o superior (Recomendado LTS) junto al gestor de paquetes `npm`.
-* **Terminal Recomendada:** PowerShell (en Windows) o Bash Terminal.
+Asegúrate de estar en la raíz del proyecto (`OLC2_EJ26_ML_-45-TalentMosaic`). La estructura debe verse así:
 
----
-Guía de Instalación Paso a Paso
+```
+OLC2_EJ26_ML_-45-TalentMosaic/
+├── .venv/              # Entorno virtual de Python
+├── Backend/            # Servidor FastAPI
+├── Front-end/          # Interfaz React + Vite
+├── Datasets/           # Archivos CSV de prueba
+└── README.md
+```
 
-### 1. Clonación y Estructura de Carpetas
-Al abrir el entorno, asegúrese de estar parado en la raíz del proyecto (`OLC2_EJ26_ML_-45-TalentMosaic`), donde visualizará la siguiente jerarquía:
-```text
-├── .venv/               # Entorno virtual de Python (Raíz)
-├── Backend/             # Código fuente del servidor (FastAPI)
-├── Front-end/           # Interfaz de usuario (React + Vite)
-└── Datasets/            # Archivos masivos de prueba (.csv)
+### Paso 2: Configurar el Backend (FastAPI)
 
+Abre tu **primera terminal** y ejecuta:
 
-Terminal 1: Encender el Backend (FastAPI)
-Abre la primera terminal y copia este bloque completo para romper el bloqueo de Windows, activar tu entorno virtual de la raíz y encender Uvicorn:
-
-PowerShell
+```powershell
+# Windows: Permitir ejecución de scripts
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process
+
+# Activar entorno virtual desde la raíz
 .\.venv\Scripts\Activate.ps1
+
+# Navegar al directorio Backend
 cd Backend
+
+# Iniciar servidor con recarga automática
 uvicorn main:app --reload
-Terminal 2: Encender el Frontend (React + Vite)
-Abre una segunda terminal en paralelo para la interfaz visual y pega este bloque para moverte a la carpeta y levantar el compilador en caliente:
+```
 
-PowerShell
+**Resultado esperado**: El servidor estará disponible en `http://localhost:8000`
+
+### Paso 3: Configurar el Frontend (React + Vite)
+
+Abre tu **segunda terminal** en paralelo y ejecuta:
+
+```powershell
+# Navegar al directorio Frontend
 cd Front-end
+
+# Instalar dependencias
+npm install
+
+# Iniciar servidor de desarrollo con recarga en caliente
 npm run dev
-Comandos de Mantenimiento (Por si los necesitas)
-Si en algún momento necesitas reinstalar dependencias porque tu compañero metió algo nuevo o quieres limpiar la caché de Node, usa estos comandos sueltos en sus respectivas carpetas:
+```
 
-Para forzar la instalación del frente si choca Recharts:
+**Resultado esperado**: La aplicación estará disponible en `http://localhost:5173`
 
-PowerShell
+---
+
+## 🛠️ Comandos de Mantenimiento
+
+Si necesitas reinstalar dependencias o resolver problemas:
+
+### Frontend - Reinstalar Dependencias (si hay conflictos con Recharts)
+
+```powershell
 cd Front-end
 npm install --legacy-peer-deps
-Para reinstalar las dependencias matemáticas si falla Python:
+```
 
-PowerShell
-pip install fastapi uvicorn pandas scikit-learn pydantic python-multipart matplotlib jinja2 we
+### Backend - Reinstalar Dependencias Python (si falla el entorno)
+
+```powershell
+cd Backend
+pip install fastapi uvicorn pandas scikit-learn pydantic python-multipart matplotlib jinja2 numpy
+```
+
+### Limpiar Caché de Node (si hay problemas de compilación)
+
+```powershell
+cd Front-end
+rm -r node_modules package-lock.json
+npm install
+```
+
+---
+
+## 📁 Estructura del Proyecto
+
+```
+OLC2_EJ26_ML_-45-TalentMosaic/
+│
+├── .venv/                    # Entorno virtual aislado de Python
+│
+├── Backend/
+│   ├── main.py              # Punto de entrada de FastAPI
+│   ├── models/              # Modelos de ML (4 algoritmos)
+│   ├── routes/              # Endpoints de la API
+│   ├── utils/               # Funciones auxiliares y NLP
+│   └── requirements.txt      # Dependencias de Python
+│
+├── Front-end/
+│   ├── src/
+│   │   ├── components/      # Componentes React reutilizables
+│   │   ├── pages/           # Vistas principales
+│   │   ├── App.jsx          # Componente raíz
+│   │   └── main.jsx         # Punto de entrada
+│   ├── package.json         # Dependencias de Node
+│   └── vite.config.js       # Configuración de Vite
+│
+├── Datasets/
+│   └── *.csv               # Archivos de datos para pruebas
+│
+└── README.md               # Este archivo
+```
+
+---
+
+## 🎓 Modelos de Machine Learning Incluidos
+
+El sistema implementa **4 algoritmos de clustering** no supervisado:
+
+1. **K-Means**: Particionamiento basado en centroides
+2. **DBSCAN**: Clustering basado en densidad
+3. **Hierarchical Clustering**: Agrupamiento jerárquico
+4. **Gaussian Mixture Models (GMM)**: Modelos probabilísticos
+
+Cada modelo es optimizado para diferentes tipos de datos de capital humano.
+
+---
+
+## 📊 Primeros Pasos
+
+1. **Inicia ambas terminales** (Backend y Frontend)
+2. **Abre tu navegador** en `http://localhost:5173`
+3. **Carga un dataset** desde la carpeta `Datasets/`
+4. **Selecciona un modelo** de clustering
+5. **Visualiza los resultados** en tiempo real
+
+---
+
+## 🐛 Troubleshooting
+
+### Puerto 8000 ya está en uso (Backend)
+
+```powershell
+uvicorn main:app --reload --port 8001
+```
+
+### Puerto 5173 ya está en uso (Frontend)
+
+```powershell
+npm run dev -- --port 5174
+```
+
+### Error de conexión Backend-Frontend
+
+Verifica que:
+- ✅ El backend esté corriendo en `http://localhost:8000`
+- ✅ El frontend intente conectar a la URL correcta
+- ✅ No haya firewall bloqueando los puertos
+
+### Problema con dependencias matemáticas (Python)
+
+```powershell
+pip install --upgrade numpy scipy scikit-learn
+```
+
+---
+
+## 📚 Tecnologías Utilizadas
+
+**Backend:**
+- FastAPI (Framework HTTP moderno)
+- Pandas (Manipulación de datos)
+- Scikit-learn (Algoritmos ML)
+- Python 3.10+
+
+**Frontend:**
+- React (Interfaz de usuario)
+- Vite (Compilador rápido)
+- Recharts (Visualización de datos)
+- Node.js 18+
+
+**Data Science:**
+- NumPy (Cálculos numéricos)
+- Matplotlib (Gráficos)
+- NLP (Procesamiento de texto)
+
+---
+
+## 👥 Contribuciones
+
+Si encuentras un bug o tienes una mejora, por favor:
+1. Crea un issue describiendo el problema
+2. Especifica tu versión de Python, Node.js y SO
+3. Incluye logs de error si es posible
+
+---
+
+## 📝 Licencia
+
+Este proyecto está disponible bajo la **Licencia MIT**. Eres libre de usar, modificar y distribuir este código con la única condición de incluir el aviso de licencia original.
+
+Para más detalles, consulta el archivo `LICENSE` en la raíz del proyecto.
+
+---
+
+## 📧 Soporte
+
+Para preguntas, bugs o sugerencias, contacta a: **ronysagui123@gmail.com**
+
+---
+
+**Última actualización**: Junio 2026
