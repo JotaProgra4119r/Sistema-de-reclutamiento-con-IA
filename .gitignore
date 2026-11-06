@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+
+# Frontend / Node
+node_modules/
+Front-end/node_modules/
+dist/
+Front-end/dist/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environments & OS
+.env
+.env.local
+.DS_Store
+Thumbs.db
+
+# IDE & Editor files
+.vscode/
+.idea/
+*.swp
+*.swo

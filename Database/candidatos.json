@@ -1,0 +1,205 @@
+[
+  {
+    "id_candidato": 1,
+    "nombres": "Sofía Isabel",
+    "apellidos": "Mendoza Ramírez",
+    "direccion": "Av. Las Américas 14-20, Zona 14",
+    "telefono": "+502 5512-3456",
+    "fecha_nacimiento": "1990-08-12",
+    "estado_civil": "Soltera",
+    "anios_experiencia": 11.5,
+    "calificacion_evaluacion": 4.9,
+    "cumplimiento_metas": 92.0,
+    "horas_mensuales": 65.0,
+    "proyectos_recurrentes": 14,
+    "comentario_evaluacion": "Consultor élite de dirección ejecutiva con liderazgo sobresaliente, trabajo en equipo impecable y máximo valor corporativo.",
+    "experiencias": [
+      {
+        "id_experiencia": 1,
+        "id_candidato": 1,
+        "empresa": "Corporación Financiera del Norte",
+        "direccion": "Zona 10",
+        "desde_fecha": "2018-01-15",
+        "hasta_fecha": "2023-11-30",
+        "sueldo": 4500.0,
+        "motivo_retiro": "Ascenso laboral"
+      },
+      {
+        "id_experiencia": 2,
+        "id_candidato": 1,
+        "empresa": "Consultores Financieros SA",
+        "direccion": "Zona 4",
+        "desde_fecha": "2014-03-01",
+        "hasta_fecha": "2017-12-31",
+        "sueldo": 4166.67,
+        "motivo_retiro": "Crecimiento profesional"
+      }
+    ],
+    "evaluaciones": [
+      {
+        "id_evaluacion": 1,
+        "id_candidato": 1,
+        "descripcion_evaluacion": "Evaluación de Análisis Financiero y Modelado Executive",
+        "nota_minima": 85.0,
+        "fecha_evaluacion": "2024-01-15",
+        "nota_obtenida": 98.0
+      },
+      {
+        "id_evaluacion": 2,
+        "id_candidato": 1,
+        "descripcion_evaluacion": "Prueba de Trabajo en Equipo y Liderazgo Estratégico",
+        "nota_minima": 80.0,
+        "fecha_evaluacion": "2024-01-20",
+        "nota_obtenida": 96.0
+      }
+    ]
+  },
+  {
+    "id_candidato": 2,
+    "nombres": "Carlos Eduardo",
+    "apellidos": "Gómez Estrada",
+    "direccion": "Calle Mariscal 8-45, Zona 11",
+    "telefono": "+502 5987-6543",
+    "fecha_nacimiento": "1998-03-22",
+    "estado_civil": "Soltero",
+    "anios_experiencia": 1.2,
+    "calificacion_evaluacion": 2.6,
+    "cumplimiento_metas": 52.0,
+    "horas_mensuales": 42.0,
+    "proyectos_recurrentes": 2,
+    "comentario_evaluacion": "Personal de soporte operacional expuesto a fatiga laboral extrema, requiriendo balance de cargas de trabajo inmediato.",
+    "experiencias": [
+      {
+        "id_experiencia": 3,
+        "id_candidato": 2,
+        "empresa": "Ventas & Operaciones Globales",
+        "direccion": "Zona 9",
+        "desde_fecha": "2023-01-01",
+        "hasta_fecha": "2024-02-15",
+        "sueldo": 175.0,
+        "motivo_retiro": "Reestructuración"
+      }
+    ],
+    "evaluaciones": [
+      {
+        "id_evaluacion": 3,
+        "id_candidato": 2,
+        "descripcion_evaluacion": "Evaluación de Soporte Operativo e Incidencias",
+        "nota_minima": 60.0,
+        "fecha_evaluacion": "2024-02-01",
+        "nota_obtenida": 55.0
+      }
+    ]
+  },
+  {
+    "id_candidato": 3,
+    "nombres": "Ana Lucía",
+    "apellidos": "Hernández Morales",
+    "direccion": "Bulevar Los Próceres 12-30, Zona 10",
+    "telefono": "+502 5432-1098",
+    "fecha_nacimiento": "1996-11-05",
+    "estado_civil": "Soltera",
+    "anios_experiencia": 7.2,
+    "calificacion_evaluacion": 4.7,
+    "cumplimiento_metas": 94.0,
+    "horas_mensuales": 148.0,
+    "proyectos_recurrentes": 35,
+    "comentario_evaluacion": "Perfil en etapa de desarrollo con alto potencial, requiere seguimiento quincenal y acompañamiento en plan de inducción corporativa.",
+    "experiencias": [
+      {
+        "id_experiencia": 4,
+        "id_candidato": 3,
+        "empresa": "Centro de Atención y Servicio al Cliente",
+        "direccion": "Zona 1",
+        "desde_fecha": "2017-02-01",
+        "hasta_fecha": "2023-08-15",
+        "sueldo": 2583.33,
+        "motivo_retiro": "Fin de contrato"
+      }
+    ],
+    "evaluaciones": [
+      {
+        "id_evaluacion": 4,
+        "id_candidato": 3,
+        "descripcion_evaluacion": "Prueba de Atención al Cliente e Integración Corporativa",
+        "nota_minima": 70.0,
+        "fecha_evaluacion": "2024-02-10",
+        "nota_obtenida": 94.0
+      }
+    ]
+  },
+  {
+    "id_candidato": 4,
+    "nombres": "Fernando José",
+    "apellidos": "Vásquez Castillo",
+    "direccion": "Calzada Roosevelt 22-10, Zona 7",
+    "telefono": "+502 5111-2233",
+    "fecha_nacimiento": "1994-05-30",
+    "estado_civil": "Casado",
+    "anios_experiencia": 3.2,
+    "calificacion_evaluacion": 4.0,
+    "cumplimiento_metas": 80.0,
+    "horas_mensuales": 90.0,
+    "proyectos_recurrentes": 11,
+    "comentario_evaluacion": "Especialista intermedio altamente confiable con trabajo en equipo constante, buena puntualidad y rendimiento estandarizado.",
+    "experiencias": [
+      {
+        "id_experiencia": 5,
+        "id_candidato": 4,
+        "empresa": "Gestión Humana & Talento Corporativo",
+        "direccion": "Zona 15",
+        "desde_fecha": "2021-04-01",
+        "hasta_fecha": "2024-01-31",
+        "sueldo": 691.67,
+        "motivo_retiro": "Mejor oferta salarial"
+      }
+    ],
+    "evaluaciones": [
+      {
+        "id_evaluacion": 5,
+        "id_candidato": 4,
+        "descripcion_evaluacion": "Evaluación de Selección de Personal y Clima Organizacional",
+        "nota_minima": 75.0,
+        "fecha_evaluacion": "2024-02-05",
+        "nota_obtenida": 80.0
+      }
+    ]
+  },
+  {
+    "id_candidato": 5,
+    "nombres": "Mariana Elizabeth",
+    "apellidos": "Rios Salazar",
+    "direccion": "Carretera a El Salvador Km 14",
+    "telefono": "+502 5777-8899",
+    "fecha_nacimiento": "1991-09-18",
+    "estado_civil": "Soltera",
+    "anios_experiencia": 10.8,
+    "calificacion_evaluacion": 4.8,
+    "cumplimiento_metas": 90.0,
+    "horas_mensuales": 62.0,
+    "proyectos_recurrentes": 13,
+    "comentario_evaluacion": "Excelente precisión técnica, dirección de diseño de marca de primer nivel y alto valor aportado en la coordinación estratégica de cuentas corporativas.",
+    "experiencias": [
+      {
+        "id_experiencia": 6,
+        "id_candidato": 5,
+        "empresa": "Estudio Creativo de Diseño & Marca",
+        "direccion": "Zona 13",
+        "desde_fecha": "2015-01-10",
+        "hasta_fecha": "2023-12-20",
+        "sueldo": 4041.67,
+        "motivo_retiro": "Cambio de residencia"
+      }
+    ],
+    "evaluaciones": [
+      {
+        "id_evaluacion": 6,
+        "id_candidato": 5,
+        "descripcion_evaluacion": "Prueba de Diseño Gráfico Corporativo y UX Executive",
+        "nota_minima": 75.0,
+        "fecha_evaluacion": "2024-01-28",
+        "nota_obtenida": 95.0
+      }
+    ]
+  }
+]

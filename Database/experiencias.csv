@@ -1,0 +1,7 @@
+id_experiencia,id_candidato,empresa,direccion,desde_fecha,hasta_fecha,sueldo,motivo_retiro
+1,1,Corporación Financiera del Norte,Zona 10,2018-01-15,2023-11-30,4500.0,Ascenso laboral
+2,1,Consultores Financieros SA,Zona 4,2014-03-01,2017-12-31,4166.67,Crecimiento profesional
+3,2,Ventas & Operaciones Globales,Zona 9,2023-01-01,2024-02-15,175.0,Reestructuración
+4,3,Centro de Atención y Servicio al Cliente,Zona 1,2017-02-01,2023-08-15,2583.33,Fin de contrato
+5,4,Gestión Humana & Talento Corporativo,Zona 15,2021-04-01,2024-01-31,691.67,Mejor oferta salarial
+6,5,Estudio Creativo de Diseño & Marca,Zona 13,2015-01-10,2023-12-20,4041.67,Cambio de residencia

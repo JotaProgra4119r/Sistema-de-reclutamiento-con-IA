@@ -1,17 +1,14 @@
-import { createContext, useState } from 'react';
+import { createContext, useState, useEffect } from 'react';
+import axios from 'axios';
 
-// 1. Creamos el contexto global
 export const AppContext = createContext();
 
-// 2. Creamos el proveedor que envolverá la aplicación
 export const AppProvider = ({ children }) => {
-  // Estado global corregido: "resenas" con 'n' para mapear dinámicamente con FastAPI
   const [modelosEntrenados, setModelosEntrenados] = useState({
-    freelancers: false,
-    resenas: false
+    freelancers: true,
+    resenas: true
   });
 
-  // --- ESTADOS GLOBALES PARA LA PERSISTENCIA DE LA VISTA PREVIA ---
   const [fileFreelancers, setFileFreelancers] = useState(null);
   const [fileResenas, setFileResenas] = useState(null);
   
@@ -20,7 +17,25 @@ export const AppProvider = ({ children }) => {
   
   const [limpiezaStatus, setLimpiezaStatus] = useState(null);
 
-  // Función para resetear todo el estado local/global del frontend
+  // Sincronización automática con el estado real del servidor backend de RRHH
+  useEffect(() => {
+    const verificarEstadoServidor = async () => {
+      try {
+        const res = await axios.get('http://localhost:8000/api/status');
+        if (res.data && res.data.modelos_entrenados) {
+          setModelosEntrenados({
+            freelancers: Boolean(res.data.modelos_entrenados.freelancers),
+            resenas: Boolean(res.data.modelos_entrenados.resenas)
+          });
+        }
+      } catch (err) {
+        console.log("Servidor backend iniciando o no disponible aún.");
+      }
+    };
+
+    verificarEstadoServidor();
+  }, []);
+
   const resetFrontendStates = () => {
     setFileFreelancers(null);
     setFileResenas(null);

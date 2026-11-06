@@ -1,0 +1,7 @@
+id_evaluacion,id_candidato,descripcion_evaluacion,nota_minima,fecha_evaluacion,nota_obtenida
+1,1,Evaluación de Análisis Financiero y Modelado Executive,85.0,2024-01-15,98.0
+2,1,Prueba de Trabajo en Equipo y Liderazgo Estratégico,80.0,2024-01-20,96.0
+3,2,Evaluación de Soporte Operativo e Incidencias,60.0,2024-02-01,55.0
+4,3,Prueba de Atención al Cliente e Integración Corporativa,70.0,2024-02-10,94.0
+5,4,Evaluación de Selección de Personal y Clima Organizacional,75.0,2024-02-05,80.0
+6,5,Prueba de Diseño Gráfico Corporativo y UX Executive,75.0,2024-01-28,95.0
