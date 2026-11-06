@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
+import { API_BASE_URL } from './services/api';
 import { AppContext } from './AppContext';
 import { 
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, 
@@ -37,7 +38,7 @@ export default function Interpretacion() {
       setError(null);
       try {
         if (activeDataset === 'freelancers') {
-          const respuesta = await axios.get('http://localhost:8000/api/stats/freelancers');
+          const respuesta = await axios.get(`${API_BASE_URL}/stats/freelancers`);
           const payload = respuesta.data.data || [];
           const dist = respuesta.data.distribucion_estadistica || [];
           
@@ -57,7 +58,7 @@ export default function Interpretacion() {
           setDatosFreelancers(datosFormateados);
           setDistribucionStats(dist);
         } else {
-          const respuesta = await axios.get('http://localhost:8000/api/stats/resenas');
+          const respuesta = await axios.get(`${API_BASE_URL}/stats/resenas`);
           const payload = respuesta.data.data || respuesta.data;
           setDatosResenas(Array.isArray(payload) ? payload : []);
         }

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, NavLink, useLocation } from 'react-router-dom';
 import axios from 'axios';
+import { API_BASE_URL } from './services/api';
 import { AppProvider } from './AppContext';
 import CargaDatos from './CargaDatos';
 import Entrenamiento from './Entrenamiento';
@@ -28,7 +29,7 @@ const NavigationBar = () => {
   useEffect(() => {
     const checkServer = async () => {
       try {
-        const res = await axios.get('http://localhost:8000/api/status');
+        const res = await axios.get(`${API_BASE_URL}/status`);
         setServerOnline(res.status === 200);
       } catch (e) {
         setServerOnline(false);

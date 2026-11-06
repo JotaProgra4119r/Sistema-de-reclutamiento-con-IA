@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
 import { AppContext } from './AppContext';
-import { clusteringService } from './services/api';
+import { clusteringService, API_BASE_URL } from './services/api';
 
 export default function Entrenamiento() {
   const { setModelosEntrenados } = useContext(AppContext);
@@ -22,7 +22,7 @@ export default function Entrenamiento() {
   useEffect(() => {
     const fetchBenchmark = async () => {
       try {
-        const res = await axios.get('http://localhost:8000/api/benchmark/modelos');
+        const res = await axios.get(`${API_BASE_URL}/benchmark/modelos`);
         if (res.data.status === 'success') {
           setBenchmarkData(res.data.benchmark);
         }

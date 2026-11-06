@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
+import { API_BASE_URL } from './services/api';
 
 export const AppContext = createContext();
 
@@ -21,7 +22,7 @@ export const AppProvider = ({ children }) => {
   useEffect(() => {
     const verificarEstadoServidor = async () => {
       try {
-        const res = await axios.get('http://localhost:8000/api/status');
+        const res = await axios.get(`${API_BASE_URL}/status`);
         if (res.data && res.data.modelos_entrenados) {
           setModelosEntrenados({
             freelancers: Boolean(res.data.modelos_entrenados.freelancers),

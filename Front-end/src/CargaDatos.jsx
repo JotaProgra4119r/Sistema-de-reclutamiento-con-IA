@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { AppContext } from './AppContext';
 import Papa from 'papaparse';
 import axios from 'axios';
+import { API_BASE_URL } from './services/api';
 
 export default function CargaDatos() {
   const {
@@ -37,9 +38,52 @@ export default function CargaDatos() {
     }
   };
 
+  const handlePrecargarOficiales = async () => {
+    setLoading(true);
+    setLimpiezaStatus(null);
+    setError(null);
+    setMensaje(null);
+    try {
+      const res = await axios.post(`${API_BASE_URL}/preload-datasets`);
+      if (res.data.status === "success") {
+        setLimpiezaStatus(res.data.limpieza_status);
+        if (res.data.preview_freelancers?.rows?.length > 0) {
+          setPreviewFreelancers(res.data.preview_freelancers);
+        }
+        if (res.data.preview_resenas?.rows?.length > 0) {
+          setPreviewResenas(res.data.preview_resenas);
+        }
+        setMensaje("Datasets oficiales precargados y sanitizados con éxito en el servidor.");
+      }
+    } catch (err) {
+      console.error("Error al precargar datasets:", err);
+      setError("No se pudieron precargar los datasets automáticos del servidor.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  React.useEffect(() => {
+    if (!previewFreelancers?.rows?.length && !previewResenas?.rows?.length) {
+      axios.get(`${API_BASE_URL}/preload-datasets`)
+        .then(res => {
+          if (res.data?.status === "success") {
+            setLimpiezaStatus(res.data.limpieza_status);
+            if (res.data.preview_freelancers?.rows?.length > 0) {
+              setPreviewFreelancers(res.data.preview_freelancers);
+            }
+            if (res.data.preview_resenas?.rows?.length > 0) {
+              setPreviewResenas(res.data.preview_resenas);
+            }
+          }
+        })
+        .catch(() => {});
+    }
+  }, []);
+
   const handleLimpiarDatos = async () => {
     if (!fileFreelancers && !fileResenas) {
-      setError("Por favor selecciona al menos un archivo CSV (Candidatos o Evaluaciones) para procesar.");
+      await handlePrecargarOficiales();
       return;
     }
 
@@ -54,7 +98,7 @@ export default function CargaDatos() {
         const formDataF = new FormData();
         formDataF.append('file', fileFreelancers);
         
-        const resF = await axios.post('http://localhost:8000/api/upload/freelancers', formDataF, {
+        const resF = await axios.post(`${API_BASE_URL}/upload/freelancers`, formDataF, {
           headers: { 'Content-Type': 'multipart/form-data' }
         });
         
@@ -67,7 +111,7 @@ export default function CargaDatos() {
         const formDataR = new FormData();
         formDataR.append('file', fileResenas);
         
-        const resR = await axios.post('http://localhost:8000/api/upload/resenas', formDataR, {
+        const resR = await axios.post(`${API_BASE_URL}/upload/resenas`, formDataR, {
           headers: { 'Content-Type': 'multipart/form-data' }
         });
         
@@ -98,7 +142,7 @@ export default function CargaDatos() {
     }
 
     try {
-      const respuesta = await axios.post('http://localhost:8000/api/clear-memory');
+      const respuesta = await axios.post(`${API_BASE_URL}/clear-memory`);
       if (respuesta.data.status === "success") {
         resetFrontendStates();
         setMensaje(respuesta.data.message);
@@ -220,6 +264,14 @@ export default function CargaDatos() {
             className="flex-1 sm:flex-none bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-bold py-3 px-6 rounded-2xl shadow-md text-xs md:text-sm transition-all active:scale-95 disabled:opacity-50"
           >
             {loading ? "Preprocesando en FastAPI..." : "🧹 Ejecutar Limpieza y Sanitización"}
+          </button>
+
+          <button
+            onClick={handlePrecargarOficiales}
+            disabled={loading}
+            className="flex-1 sm:flex-none bg-indigo-50 hover:bg-indigo-100 text-indigo-800 border border-indigo-200 font-bold py-3 px-6 rounded-2xl text-xs md:text-sm transition-all active:scale-95 disabled:opacity-50"
+          >
+            ⚡ Usar Datasets Predefinidos de RRHH
           </button>
           
           <button

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { API_BASE_URL } from './services/api';
 
 export default function Exportacion() {
   const [descargando, setDescargando] = useState(false);
@@ -49,7 +50,7 @@ export default function Exportacion() {
     setExito(null);
 
     try {
-      const respuesta = await axios.post('http://localhost:8000/api/export', configExportacion, {
+      const respuesta = await axios.post(`${API_BASE_URL}/export`, configExportacion, {
         responseType: 'blob',
         headers: { 'Content-Type': 'application/json' }
       });
@@ -77,7 +78,7 @@ export default function Exportacion() {
     setError(null);
     setExito(null);
     try {
-      const res = await axios.get(`http://localhost:8000/api/export/single/${tipo}`, {
+      const res = await axios.get(`${API_BASE_URL}/export/single/${tipo}`, {
         responseType: 'blob'
       });
       const url = window.URL.createObjectURL(new Blob([res.data]));

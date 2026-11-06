@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { API_BASE_URL } from './services/api';
 import {
   ResponsiveContainer, BarChart, Bar, PieChart, Pie, Cell,
   XAxis, YAxis, Tooltip, Legend, CartesianGrid, AreaChart, Area
@@ -16,11 +17,11 @@ export default function Dashboards() {
     setLoading(true);
     setError(null);
     try {
-      const res = await axios.get('http://localhost:8000/api/dashboard/stats');
+      const res = await axios.get(`${API_BASE_URL}/dashboard/stats`);
       setData(res.data);
     } catch (err) {
       console.error("Error al cargar métricas de dashboard:", err);
-      setError("No se pudieron cargar las estadísticas del sistema. Asegúrate de que el servidor backend esté activo en http://localhost:8000.");
+      setError("No se pudieron cargar las estadísticas del sistema. Asegúrate de que el servidor backend esté en línea.");
     } finally {
       setLoading(false);
     }
@@ -33,7 +34,7 @@ export default function Dashboards() {
   const descargarArchivo = async (tipo, nombre) => {
     setDescargando(true);
     try {
-      const res = await axios.get(`http://localhost:8000/api/export/single/${tipo}`, {
+      const res = await axios.get(`${API_BASE_URL}/export/single/${tipo}`, {
         responseType: 'blob'
       });
       const url = window.URL.createObjectURL(new Blob([res.data]));

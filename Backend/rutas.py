@@ -42,6 +42,44 @@ def obtener_estado_servidor():
         }
     }
 
+@router.get("/preload-datasets", tags=["Motor de Clustering IA"])
+@router.post("/preload-datasets", tags=["Motor de Clustering IA"])
+def precargar_datasets_oficiales():
+    asegurar_datos_y_modelo_cargados("freelancers")
+    asegurar_datos_y_modelo_cargados("resenas")
+    
+    df_f = datos_limpios.get("freelancers")
+    df_r = datos_limpios.get("resenas")
+    
+    preview_f = {"headers": [], "rows": []}
+    if df_f is not None:
+        cols_f = [c for c in df_f.columns if c not in ['segmento', 'raw_segmento']][:6]
+        preview_f = {
+            "headers": cols_f,
+            "rows": df_f[cols_f].head(5).fillna("").to_dict(orient="records")
+        }
+        
+    preview_r = {"headers": [], "rows": []}
+    if df_r is not None:
+        cols_r = [c for c in df_r.columns if c not in ['segmento', 'raw_segmento']][:4]
+        preview_r = {
+            "headers": cols_r,
+            "rows": df_r[cols_r].head(5).fillna("").to_dict(orient="records")
+        }
+        
+    return {
+        "status": "success",
+        "message": "Datasets oficiales precargados y disponibles para análisis y clustering.",
+        "limpieza_status": {
+            "candidatos_total": len(df_f) if df_f is not None else 0,
+            "evaluaciones_total": len(df_r) if df_r is not None else 0,
+            "estado": "Datos limpios en RAM y listos para evaluación",
+            "modelos": "K-Means (k=4) optimizado"
+        },
+        "preview_freelancers": preview_f,
+        "preview_resenas": preview_r
+    }
+
 # --- MODELOS PYDANTIC PARA ENDPOINTS DE ML ---
 class ClusterConfig(BaseModel):
     dataset: str               # "freelancers" o "resenas"
@@ -424,6 +462,7 @@ async def obtener_estadisticas_resenas():
 
 @router.get("/evaluacion/freelancers", tags=["Motor de Clustering IA"])
 async def evaluacion_freelancers():
+    asegurar_datos_y_modelo_cargados("freelancers")
     df_f = datos_limpios.get("freelancers")
     if df_f is None or 'segmento' not in df_f.columns:
         return JSONResponse(status_code=400, content={"status": "error", "message": "Ejecuta el clustering de candidatos/talentos primero."})
@@ -542,6 +581,7 @@ async def predecir_nuevo_freelancer(data: CandidatoNuevoMetrics):
 
 @router.post("/predict/resenas", tags=["Motor de Clustering IA"])
 async def predecir_nueva_resena(data: ResenaNueva):
+    asegurar_datos_y_modelo_cargados("resenas")
     modelo = modelos_entrenados["resenas"]["modelo"]
     vectorizer = modelos_entrenados["resenas"]["vectorizer"]
     algoritmo = modelos_entrenados["resenas"]["algoritmo"]
